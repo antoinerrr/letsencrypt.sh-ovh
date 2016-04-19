@@ -1,5 +1,7 @@
 #!/usr/bin/python
-import ovh, sys, time
+import ovh
+import sys
+import time
 
 if len(sys.argv) == 2:
   if sys.argv[1] == "--init":
@@ -14,22 +16,22 @@ if len(sys.argv) == 2:
     print "Try --init to get started"
 elif len(sys.argv) == 5:
   if sys.argv[1] == "deploy_challenge":
-    token="\"" + sys.argv[4] + "\""
-    ndd=sys.argv[2]
-    ndd=ndd.split(".")
+    token = "\"" + sys.argv[4] + "\""
+    ndd = sys.argv[2]
+    ndd = ndd.split(".")
     if len(ndd)==2:
-      subdomain="_acme-challenge"
-      basedomain=ndd[0] + "." + ndd[1]
+      subdomain = "_acme-challenge"
+      basedomain = ndd[0] + "." + ndd[1]
     else:
-      subdomain="_acme-challenge." + ndd[0]
-      basedomain=ndd[1] + "." + ndd[2]
+      subdomain = "_acme-challenge." + ndd[0]
+      basedomain = ndd[1] + "." + ndd[2]
     client = ovh.Client()
     id_record = client.post('/domain/zone/%s/record' % basedomain,
-        fieldType="TXT",
-        subDomain=subdomain,
-        ttl=0,
-        target=token
-    )
+                            fieldType="TXT",
+                            subDomain=subdomain,
+                            ttl=0,
+                            target=token
+                            )
     target = open('.id_temp', 'w')
     target.truncate()
     target.write(str(id_record["id"]))
@@ -39,12 +41,12 @@ elif len(sys.argv) == 5:
     target = open('.id_temp', 'r')
     id_record = target.read()
     client = ovh.Client()
-    ndd=sys.argv[2]
-    ndd=ndd.split(".")
-    if len(ndd)==2:
-      basedomain=ndd[0] + "." + ndd[1]
+    ndd = sys.argv[2]
+    ndd = ndd.split(".")
+    if len(ndd) == 2:
+      basedomain = ndd[0] + "." + ndd[1]
     else:
-      basedomain=ndd[1] + "." + ndd[2]
+      basedomain = ndd[1] + "." + ndd[2]
     client.delete('/domain/zone/%s/record/%s' % (basedomain, id_record))
   else:
     print "Unknow action"
