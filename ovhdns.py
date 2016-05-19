@@ -36,6 +36,7 @@ elif len(sys.argv) == 5:
     target.truncate()
     target.write(str(id_record["id"]))
     target.close()
+    client.post('/domain/zone/%s/refresh' % basedomain)
     time.sleep(60)
   elif sys.argv[1] == "clean_challenge":
     target = open('.id_temp', 'r')
@@ -48,5 +49,6 @@ elif len(sys.argv) == 5:
     else:
       basedomain = ndd[1] + "." + ndd[2]
     client.delete('/domain/zone/%s/record/%s' % (basedomain, id_record))
+    client.post('/domain/zone/%s/refresh' % basedomain)
   else:
     print "Unknow action"
