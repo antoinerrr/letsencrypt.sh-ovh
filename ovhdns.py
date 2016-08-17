@@ -1,7 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import ovh
 import sys
 import time
+
+# Fix Python 2.x.
+try: input = raw_input
+except NameError: pass
 
 if len(sys.argv) == 2:
   if sys.argv[1] == "--init":
@@ -9,11 +13,11 @@ if len(sys.argv) == 2:
     ck = client.new_consumer_key_request()
     ck.add_recursive_rules(ovh.API_READ_WRITE, "/domain")
     validation = ck.request()
-    print "LINK: %s" % validation['validationUrl']
-    raw_input("Press Enter when it's done...")
-    print "ConsumerKey: %s" % validation['consumerKey']
+    print("LINK: %s" % validation['validationUrl'])
+    input("Press Enter when it's done...")
+    print("ConsumerKey: %s" % validation['consumerKey'])
   else:
-    print "Try --init to get started"
+    print("Try --init to get started")
 elif len(sys.argv) == 5:
   if sys.argv[1] == "deploy_challenge":
     token = "\"" + sys.argv[4] + "\""
@@ -51,4 +55,4 @@ elif len(sys.argv) == 5:
     client.delete('/domain/zone/%s/record/%s' % (basedomain, id_record))
     client.post('/domain/zone/%s/refresh' % basedomain)
   else:
-    print "Unknow action"
+    print("Unknow action")
