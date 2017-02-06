@@ -23,12 +23,15 @@ elif len(sys.argv) == 5:
     token = "\"" + sys.argv[4] + "\""
     ndd = sys.argv[2]
     ndd = ndd.split(".")
-    if len(ndd)==2:
-      subdomain = "_acme-challenge"
-      basedomain = ndd[0] + "." + ndd[1]
-    else:
-      subdomain = "_acme-challenge." + ndd[0]
-      basedomain = ndd[1] + "." + ndd[2]
+    basedomain = ndd[len(ndd)-2] + "." + ndd[len(ndd)-1]
+    subdomain = "_acme-challenge"
+    if len(ndd)>2:
+       subdomain += "."
+       for i in range(0,len(ndd)-2):
+	     if i == len(ndd)-3:
+		   subdomain += ndd[i]
+	     else:
+		   subdomain += ndd[i] + "."
     client = ovh.Client()
     id_record = client.post('/domain/zone/%s/record' % basedomain,
                             fieldType="TXT",
@@ -48,10 +51,7 @@ elif len(sys.argv) == 5:
     client = ovh.Client()
     ndd = sys.argv[2]
     ndd = ndd.split(".")
-    if len(ndd) == 2:
-      basedomain = ndd[0] + "." + ndd[1]
-    else:
-      basedomain = ndd[1] + "." + ndd[2]
+    basedomain = ndd[len(ndd)-2] + "." + ndd[len(ndd)-1]
     client.delete('/domain/zone/%s/record/%s' % (basedomain, id_record))
     client.post('/domain/zone/%s/refresh' % basedomain)
   else:
