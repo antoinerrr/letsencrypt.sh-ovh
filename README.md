@@ -14,7 +14,7 @@ See https://ungeek.fr/letsencrypt-api-ovh/
 
 1) Get OVH API keys
 
-See https://eu.api.ovh.com/auth/ and/or `./ovhdns.py --init` to get your user token
+See https://api.ovh.com/createToken/ and fill in `ovh.conf` with data received (copy it from demo sample before)
 
 2) Create a ``run`` script with:
 
