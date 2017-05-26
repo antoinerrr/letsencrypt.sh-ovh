@@ -10,8 +10,7 @@ try:
 except NameError:
     pass
 
-target = open('.id_temp', 'r')
-id_record = target.read()
+id_record = os.environ['CERTBOT_AUTH_OUTPUT']
 client = ovh.Client()
 ndd = os.environ['CERTBOT_DOMAIN']
 ndd = ndd.split(".")

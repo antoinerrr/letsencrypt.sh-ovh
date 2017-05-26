@@ -28,9 +28,6 @@ id_record = client.post('/domain/zone/%s/record' % basedomain,
                         subDomain=subdomain,
                         ttl=0,
                         target=token)
-target = open('.id_temp', 'w')
-target.truncate()
-target.write(str(id_record["id"]))
-target.close()
+print (str(id_record["id"]))
 client.post('/domain/zone/%s/refresh' % basedomain)
 time.sleep(60)
