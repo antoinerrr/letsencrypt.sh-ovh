@@ -9,18 +9,7 @@ try:
 except NameError:
     pass
 
-if len(sys.argv) == 2:
-    if sys.argv[1] == "--init":
-        client = ovh.Client()
-        ck = client.new_consumer_key_request()
-        ck.add_recursive_rules(ovh.API_READ_WRITE, "/domain")
-        validation = ck.request()
-        print("LINK: %s" % validation['validationUrl'])
-        input("Press Enter when it's done...")
-        print("ConsumerKey: %s" % validation['consumerKey'])
-    else:
-        print("Try --init to get started")
-elif len(sys.argv) == 5:
+if len(sys.argv) == 5:
     if sys.argv[1] == "deploy_challenge":
         token = "\"" + sys.argv[4] + "\""
         ndd = sys.argv[2]
