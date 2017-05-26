@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-import sys
 import time
 import ovh
+import os
 
 # Fix Python 2.x.
 try:
@@ -9,8 +9,9 @@ try:
 except NameError:
     pass
 
-token = "\"" + sys.argv[4] + "\""
-ndd = sys.argv[2]
+ndd = os.environ['CERTBOT_DOMAIN']
+token = "\"" +  os.environ['CERTBOT_VALIDATION'] + "\""
+
 ndd = ndd.split(".")
 basedomain = ndd[len(ndd)-2] + "." + ndd[len(ndd)-1]
 subdomain = "_acme-challenge"

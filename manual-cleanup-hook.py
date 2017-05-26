@@ -2,6 +2,7 @@
 import sys
 import time
 import ovh
+import os
 
 # Fix Python 2.x.
 try:
@@ -12,7 +13,7 @@ except NameError:
 target = open('.id_temp', 'r')
 id_record = target.read()
 client = ovh.Client()
-ndd = sys.argv[2]
+ndd = os.environ['CERTBOT_DOMAIN']
 ndd = ndd.split(".")
 basedomain = ndd[len(ndd)-2] + "." + ndd[len(ndd)-1]
 client.delete('/domain/zone/%s/record/%s' % (basedomain, id_record))
