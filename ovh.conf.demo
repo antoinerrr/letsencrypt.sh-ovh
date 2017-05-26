@@ -6,6 +6,5 @@ endpoint=ovh-eu
 ; configuration specific to 'ovh-eu' endpoint
 application_key=APP_KEY
 application_secret=APP_SECRET
-; uncomment following line when writing a script application
-; with a single consumer key.
-;consumer_key=MA_CLEFS
+; uncomment following line when writing a script application with a single consumer key.
+consumer_key=MA_CLEFS
