@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-import ovh
+import ovh,sys
 
 # create a client using configuration
 client = ovh.Client()
