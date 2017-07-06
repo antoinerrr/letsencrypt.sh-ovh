@@ -20,12 +20,12 @@ See https://api.ovh.com/createToken/ and fill in `ovh.conf` with data received (
 
 In the same directory as ovh.conf, run:
 
-$ python ovhdns.py /domain/zone/example.com
+$ python ovhdns.py /domain/zone/_acme-challenge.example.com
 
 This will prompt you with an URL where you will need to input your OVH account and password to enable the API token. 
 
 The optional string given as parameter defines the Read-Write access granted to the token. /domain gives access to all DNS domains under this OVN account.
-You can use /domain/zone/example.com to limit it to your example.com domain.
+You can use /domain/zone/_acme-challenge.example.com to limit it to your example.com domain.
 If no parameters are given, the script defaults to /domain (BE SURE THIS IS OK FOR YOUR USECASE.)
 
 ## Usage
