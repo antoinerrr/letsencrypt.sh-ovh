@@ -30,4 +30,6 @@ id_record = client.post('/domain/zone/%s/record' % basedomain,
                         target=token)
 print (str(id_record["id"]))
 client.post('/domain/zone/%s/refresh' % basedomain)
-time.sleep(5)
+# This is needed to allow for enough time to let the record propagate
+# Don't hesitate to manually increase this value to be well over your record TTL
+time.sleep(120)
