@@ -28,11 +28,20 @@ The optional string given as parameter defines the Read-Write access granted to 
 You can use /domain/zone/_acme-challenge.example.com to limit it to your example.com domain.
 If no parameters are given, the script defaults to /domain (BE SURE THIS IS OK FOR YOUR USECASE.)
 
+By default the manual-auth-hook.py script will wait for 120 seconds before allowing ACME to perform the dns challenge, this is to allow for the record to be propagated. Please lower your TTL to low enough values that the validation will not fail due no DNS caching. Don't hesitate to modify the ending "sleep(120)" line to increase the time to be well over your DNS TTL.
+
 ## Usage
 
 Check certbot docs for it but you will need at least the following params:
 
 ```
 --manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
+
+```
+
+Most people would be ok with:
+
+```
+certbot certonly -d example.com --preferred-challenges dns --manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
 
 ```
