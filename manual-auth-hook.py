@@ -30,4 +30,4 @@ id_record = client.post('/domain/zone/%s/record' % basedomain,
                         target=token)
 print (str(id_record["id"]))
 client.post('/domain/zone/%s/refresh' % basedomain)
-time.sleep(5)
+time.sleep(10)
