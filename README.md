@@ -22,6 +22,6 @@ See https://api.ovh.com/createToken/ and fill in `ovh.conf` with data received (
 Check certbot docs for it but you will need at least the following params:
 
 ```
---manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
+--preferred-challenge dns --manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
 
 ```
