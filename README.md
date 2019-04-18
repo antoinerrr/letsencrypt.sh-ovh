@@ -14,7 +14,11 @@ It's is inspired (a lot) from the work of https://ungeek.fr/letsencrypt-api-ovh/
 
 1) Get OVH API keys
 
-See https://api.ovh.com/createToken/ and fill in `ovh.conf` with data received (copy it from demo sample before)
+See https://api.ovh.com/createToken/ and fill in `ovh.conf` with data received (copy it from demo sample before).  
+
+You can leave the configuration file in the repository directory. But for using the hook scripts outside of the letsencrypt.sh-ovh directory, it could be better to move it to one of the the following locations:
+- `/etc/ovh.conf`
+- `~/.ovh.conf`
 
 
 ## Usage
@@ -22,7 +26,7 @@ See https://api.ovh.com/createToken/ and fill in `ovh.conf` with data received (
 Check certbot docs for it but you will need at least the following params:
 
 ```
---manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
+--preferred-challenge dns --manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
 
 ```
 
