@@ -30,4 +30,9 @@ id_record = client.post('/domain/zone/%s/record' % basedomain,
                         target=token)
 print (str(id_record["id"]))
 client.post('/domain/zone/%s/refresh' % basedomain)
-time.sleep(10)
+
+if 'CERTBOT_OVH_SLEEPTIME' in os.environ:
+    time.sleep(float(os.environ['CERTBOT_OVH_SLEEPTIME']))
+else:
+    time.sleep(10)
+

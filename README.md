@@ -25,3 +25,10 @@ Check certbot docs for it but you will need at least the following params:
 --manual --manual-auth-hook ./manual-auth-hook.py --manual-cleanup-hook ./manual-cleanup-hook.py
 
 ```
+
+## Potential issues
+Dns updates can take up to 24 hours to propagate. Actually, in most cases it will take a few seconds.  
+By default, the auth hook waits 10 seconds for the dns update. If this time is insufficient, you can increase it by setting a `CERTBOT_OVH_SLEEPTIME` environment variable with the intended delay:
+```bash
+export CERTBOT_OVH_SLEEPTIME=30
+```
